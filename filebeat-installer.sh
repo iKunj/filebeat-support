@@ -35,9 +35,9 @@ generate_rawCertificates(){
 	wget "https://raw.githubusercontent.com/iKunj/filebeat-support/main/server.conf"
 	wget "https://raw.githubusercontent.com/iKunj/filebeat-support/main/filebeat.yml"
 
-	sed -i "s/localhost:5044/$logstashIP:5044/" filebeat.yml
+	#sed -i "s/localhost:5044/$logstashIP:5044/" filebeat.yml
 	sed -i "s/localhost/$logstashIP/" server.conf
-	sed -i "s+filepathreplace+$logPath+" filebeat.yml
+	#sed -i "s+filepathreplace+$logPath+" filebeat.yml
 
 	openssl genrsa -out ca.key 2048
 	openssl req -x509 -new -nodes -key ca.key -sha256 -days 3650 -out ca.crt
@@ -60,7 +60,7 @@ copy_rawCertificates(){
 	cp ca.crt /etc/pki/filebeat/
 	cp client.key /etc/pki/filebeat/
 	cp client.crt /etc/pki/filebeat/
-	cp filebeat.yml /etc/filebeat/
+	#cp filebeat.yml /etc/filebeat/
 }
 
 generate_SSL(){
@@ -148,12 +148,12 @@ else
 
 		#wget "https://raw.githubusercontent.com/iKunj/filebeat-support/main/client.conf"
 		#wget "https://raw.githubusercontent.com/iKunj/filebeat-support/main/server.conf"
-		wget "https://raw.githubusercontent.com/iKunj/filebeat-support/main/filebeat.yml"
+		#wget "https://raw.githubusercontent.com/iKunj/filebeat-support/main/filebeat.yml"
 
-		sed -i "s/localhost:5044/$logstashIP:5044/" filebeat.yml
+		#sed -i "s/localhost:5044/$logstashIP:5044/" filebeat.yml
 		#sed -i "s/localhost/$logstashIP/" server.conf
-		sed -i "s+filepathreplace+$logPath+" filebeat.yml
-		cp filebeat.yml /etc/filebeat/
+		#sed -i "s+filepathreplace+$logPath+" filebeat.yml
+		#cp filebeat.yml /etc/filebeat/
 
 		echo -e "\n\n\nInstallation Completed"
 		echo -e "\nCopy relevant files to these locations"
